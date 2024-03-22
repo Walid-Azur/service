@@ -15,7 +15,7 @@ app = Flask(__name__)
 class AudioTranscriptionService:
     
     def __init__(self):
-        self.model_size = os.environ.get("MODEL_SIZE", "base")
+        self.model_size = os.environ.get("MODEL_SIZE", "large-v3")
         self.device = "cpu"
         self.compute_type = "float32"
         # Initialize Whisper and Seamless models
@@ -80,7 +80,7 @@ class AudioTranscriptionService:
         """Transcribe a chunk of audio using the Whisper model."""
         try:
             # Perform transcription using the Whisper model
-            segments, info = self.model.transcribe(temp_audio_path, beam_size=5)
+            segments, info = self.model.transcribe(temp_audio_path, beam_size=5, language="fr")
             transcription = " ".join([segment.text for segment in segments])
             logging.info(f"Transcription: {transcription}")
             return transcription
