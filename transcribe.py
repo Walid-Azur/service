@@ -13,7 +13,7 @@ def transcribe_audio(file_path):
     Args:
     file_path (str): The path to the audio file to be transcribed.
     """
-    url = 'http://localhost:3000/transcribe_file'
+    url = 'http://192.168.2.226:3000/transcribe_file'
     with open(file_path, 'rb') as audio_file:
         files = {'audio_data': (file_path, audio_file, 'audio/wav')}
         try:
@@ -54,5 +54,5 @@ def transcribe_concurrently(file_path, num_requests=1):
     logging.info(f"All transcriptions completed in {duration:.2f} seconds.")
 
 if __name__ == '__main__':
-    audio_file_path = './doc.mp3'  # Update this path to your actual audio file path
+    audio_file_path = './frenz.mp4'  # Update this path to your actual audio file path
     transcribe_concurrently(audio_file_path)
