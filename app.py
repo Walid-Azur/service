@@ -16,7 +16,7 @@ app = FastAPI()
 class AudioTranscriptionService:
     
     def __init__(self):
-        self.model_size = os.environ.get("MODEL_SIZE", "base")
+        self.model_size = os.environ.get("MODEL_SIZE", "large-v3")
         self.device = "cuda" if torch.cuda.is_available() else "cpu"
         self.compute_type = "float32"
         self.audio_sessions_folder = "audio_sessions"  # Define the folder name
@@ -83,7 +83,7 @@ class AudioTranscriptionService:
         """Transcribe a chunk of audio using the Whisper model."""
         try:
             # Perform transcription using the Whisper model
-            segments, info = self.model.transcribe(temp_audio_path, beam_size=5)
+            segments, info = self.model.transcribe(temp_audio_path, language = "fr", beam_size=5)
             transcription = " ".join([segment.text for segment in segments])
             logging.info(f"Transcription: {transcription}")
             return transcription

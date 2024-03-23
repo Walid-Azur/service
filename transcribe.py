@@ -27,7 +27,7 @@ def transcribe_audio(file_path):
             logging.error(f'Error occurred during transcription request: {e}')
             return None
 
-def transcribe_concurrently(file_path, num_requests=30):
+def transcribe_concurrently(file_path, num_requests=1):
     """
     Simulates concurrent access to the transcription API.
 
@@ -54,5 +54,5 @@ def transcribe_concurrently(file_path, num_requests=30):
     logging.info(f"All transcriptions completed in {duration:.2f} seconds.")
 
 if __name__ == '__main__':
-    audio_file_path = './Testing_data/short.mp3'  # Update this path to your actual audio file path
+    audio_file_path = './doc.mp3'  # Update this path to your actual audio file path
     transcribe_concurrently(audio_file_path)
